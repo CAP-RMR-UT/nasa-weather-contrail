@@ -29,5 +29,5 @@ html_theme = "alabaster"
 html_static_path = ["_static"]
 
 
-# -- Options for HTML output -------------------------------------------------
+# -- Options for LaTeX output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/latex.html

@@ -5,12 +5,12 @@ Administration
 Inbound / Outbound Sorties
 --------------------------
 
-a. No flight sorties are expected.
+#. No flight sorties are expected.
 
-b. No ground sorties are expected as each unit is expected to collect data
+#. No ground sorties are expected as each unit is expected to collect data
    at their normal meeting facilities.
 
-c. Wing IC may approve ground sorties for a unit to travel to a different
+#. Wing IC may approve ground sorties for a unit to travel to a different
    location to collect data.
 
 
@@ -18,32 +18,32 @@ c. Wing IC may approve ground sorties for a unit to travel to a different
 Sortie Management
 -----------------
 
-a. Wing IC shall be the final approval for any ground sorties.
+#. Wing IC shall be the final approval for any ground sorties.
 
-b. Wing IC, OSC, or GBD shall monitor ground sorties.
+#. Wing IC, OSC, or GBD shall monitor ground sorties.
 
 
 
 Safety Considerations
 ---------------------
 
-a. 
+#. 
 
 
 
 Mission Paperwork
 -----------------
 
-a. Incident command system forms shall be stored electronically in the WMIRS
+#. Incident command system forms shall be stored electronically in the WMIRS
    mission files of the mission assigned to the incident command post in
    the "Plans" directory.
 
-b. Event logging will be recorded in the WMIRS mission logging facility of
+#. Event logging will be recorded in the WMIRS mission logging facility of
    the mission assigned to the incident command post. If the Activity Log
    (ICS 214) is used then it shall be stored electronically in the WMIRS
    mission files in the "Mission Logs" directory.
 
-c. Raw data collection sheets shall be stored electronically in the WMIRS
+#. Raw data collection sheets shall be stored electronically in the WMIRS
    mission files for the wing mission the member signed into in the
    "Data" directory. The name of the file shall have the format
    "yyyy-mm-dd_unitid_capid_rawdata" where "yyyy" is the four digit year,
@@ -58,11 +58,11 @@ c. Raw data collection sheets shall be stored electronically in the WMIRS
 Daily SITREPS
 -------------
 
-a. Each wing IC shall submit a SITREP at the end of the operational period
+#. Each wing IC shall submit a SITREP at the end of the operational period
    to the region IC.
 
-b. Each region IC shall submit a region SITREP at the end of the operational
+#. Each region IC shall submit a region SITREP at the end of the operational
    period to the national IC.
 
-c. The national IC shall submit a national SITREP to the national commander.
+#. The national IC shall submit a national SITREP to the national commander.
 

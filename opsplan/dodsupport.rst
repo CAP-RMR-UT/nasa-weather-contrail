@@ -1,5 +1,5 @@
 Military Support Requirements
 =============================
 
-a. Department of Defense support is not expected.
+Department of Defense support is not expected.
 

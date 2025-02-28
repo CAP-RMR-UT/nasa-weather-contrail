@@ -26,6 +26,6 @@ Event Enrollment Procedures
 
 #. Members who wish to participate shall contact their unit coordinator.
 
-#. Unit coordinators shall submit participants to the wing or region ICP as
-   appropriate.
+#. Unit coordinators shall submit participants to the wing or region
+   coordinator as appropriate.
 

@@ -14,6 +14,11 @@ CAP, with emphasis on CAP cadets, to conduct this data collection over all
 states, districts, and territories. The data collection will happen over
 three months with a single day each month.
 
+NASA will also be observing some units to see how we collect data, how we
+run the mission, and the impacts of this activity on individuals interest
+in STEM engagement. Wings and subordiante unit commanders will agree to this
+observation.
+
 
 Incident Command Post
 ---------------------
@@ -32,7 +37,12 @@ Incident Command Post
 Primary Dates & Times
 ---------------------
 
-TBD
+#. Data collection will occur on the following dates:
+
+   #. 12 Apr 2025
+   #. 10 May 2025
+   #. 14 Jun 2025
+   #. 12 Jul 2025
 
 
 Alternate Dates
@@ -71,7 +81,7 @@ phone: (435)890-5708
 
 
 National Incident Commander
-TBD
+To be selected by the CAP/CC.
 
 
 Other Contacts

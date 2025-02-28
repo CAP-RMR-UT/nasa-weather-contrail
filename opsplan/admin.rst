@@ -27,7 +27,8 @@ Sortie Management
 Safety Considerations
 ---------------------
 
-#. 
+#. The IC shall ensure all safety points are covered before release of
+   any sortie.
 
 
 

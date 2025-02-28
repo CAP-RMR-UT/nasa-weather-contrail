@@ -37,7 +37,7 @@ Table of Contents
 11. `Logistics`_
 12. `Military Support Requirements`_
 13. `Public Affairs`_
-14. `Contingencies & Emergency Services Missions`_
+14. `Contingencies and Emergency Services Missions`_
 
 Appendix
 --------

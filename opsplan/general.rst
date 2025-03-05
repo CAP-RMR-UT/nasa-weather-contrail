@@ -12,7 +12,7 @@ NASA is collecting data to study the effects of contrail creation in the
 upper troposphere on weather and climate. NASA has requested the aid of
 CAP, with emphasis on CAP cadets, to conduct this data collection over all
 states, districts, and territories. The data collection will happen over
-three months with a single day each month.
+multiple dates as specified in `Primary Dates & Times`_.
 
 NASA will also be observing some units to see how we collect data, how we
 run the mission, and the impacts of this activity on individuals interest

@@ -1,0 +1,89 @@
+version: '3'
+
+dotenv: [.env, '{{.HOME}}/.env']
+
+includes:
+  tests:
+    taskfile: tests/Taskfile.dist.yml
+  docker:
+    taskfile: src/docker/Taskfile.dist.yml
+
+tasks:
+
+  build:
+    desc: Build the application
+    deps:
+      - setup:python:runtime
+    cmds:
+      - python -m build
+
+  install:
+    desc: Install the application
+    deps:
+      - build
+    cmds:
+      - python -m pip install .
+
+  lint:
+    desc: Run the lint system
+    deps:
+      - setup:python:dev
+    cmds:
+      - pre-commit run --show-diff-on-failure --color=always {{.CLI_ARGS}}
+
+  clean:
+    desc: Clean generated files
+    deps:
+      - tests:clean
+    cmds:
+      - rm -rf ./build
+      - rm -rf ./dist
+      - rm -rf ./src/wmirsdata.egg-info
+      - rm -rf .task
+      - cmd: find ./src -type d -name __pycache__ -exec rm -rf {} \; 2> /dev/null
+        ignore_error: true
+      - cmd: find ${VIRTUAL_ENV:-.venv} -name 'wmirsdata*' -exec rm -rf {} \; 2> /dev/null
+
+  setup:dev:
+    desc: Setup development environment
+    preconditions:
+      - sh: test -d ${VIRTUAL_ENV:-.venv}
+        msg: A virtual environment is required (e.g. `python -m venv .venv && source .venv/bin/activate`)
+    sources:
+      - pyproject.toml
+    cmds:
+      - task: setup:git
+      - task: setup:python:dev
+
+  setup:git:
+    desc: Setup git hooks
+    run: once
+    status:
+      - grep --quiet 'exec pre-commit' .git/hooks/pre-commit
+    cmds:
+      - pre-commit install
+
+  setup:python:runtime:
+    desc: Setup python runtime environment
+    run: once
+    vars:
+      python_version:
+        sh: sed -E -n 's/requires-python = "[>~=]+([0-9.]+)"/\1/p' pyproject.toml
+    preconditions:
+      - sh: python -c 'import sys; exit(sys.version_info.minor < int("{{.python_version}}".split(".")[1]))'
+    sources:
+      - pyproject.toml
+    cmds:
+      - python -m pip install --upgrade pip
+      - python -m pip install --upgrade setuptools setuptools_scm build
+      - python -m pip install --upgrade .
+
+  setup:python:dev:
+    desc: Setup python development environment
+    run: once
+    sources:
+      - pyproject.toml
+    deps:
+      - setup:python:runtime
+    cmds:
+      - python -m pip install --upgrade '.[dev]'

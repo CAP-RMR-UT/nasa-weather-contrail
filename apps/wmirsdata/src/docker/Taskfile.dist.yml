@@ -1,0 +1,53 @@
+version: '3'
+
+vars:
+  image_name: ghcr.io/cap-rmr-ut/cap-nasa-weather
+  docker_compose_file: docker-compose.yml
+  docker_compose_flags: --file {{.docker_compose_file}}
+
+tasks:
+
+  up:
+    desc: Start the application in docker
+    deps:
+      - down
+    cmds:
+      - docker compose {{.docker_compose_flags}} up --detach
+
+  down:
+    desc: Stop application running in docker
+    run: once
+    cmds:
+      - docker compose {{.docker_compose_flags}} down
+
+  shell:
+    desc: Start the application container at a command line shell
+    deps:
+      - build
+    cmds:
+      - docker run --rm -it --entrypoint sh {{.image_name}}
+
+  build:
+    desc: Build a docker image
+    vars:
+      dockerfile: src/docker/Dockerfile
+      context:
+        sh: pwd
+      version:
+        sh: python -m setuptools_scm
+      revision:
+        sh: git show --format='%H' | head -n 1
+    preconditions:
+      - test -f {{.dockerfile}}
+    cmds:
+      - cmd: docker image rm {{.image_name}}
+        ignore_error: true
+      - cmd: >
+          docker build
+          --tag={{.image_name}}
+          --build-arg VERSION="{{.version}}"
+          --build-arg REVISION="{{.revision}}"
+          --build-arg INSTALL_DEV=true
+          --file={{.dockerfile}}
+          {{.context}}
+      - docker image tag {{.image_name}} {{.image_name}}:latest

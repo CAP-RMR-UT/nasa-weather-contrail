@@ -1,0 +1,123 @@
+version: '3'
+
+tasks:
+
+  default:
+    desc: Run all tests
+    summary: >
+      This will run every test, regardless of marks, that are not explicitly
+      skipped. The order will be chosen by pytest.
+
+      Any argments passed to task will be added to the pytest arguments:
+      for example `task tests -- src/app/tests/api/routes/test_items.py` will
+      only run the tests in the `test_items.py` file.
+    cmds:
+      - cmd: coverage run --branch --module pytest {{.marks}} {{.CLI_ARGS}}
+      - cmd: coverage html --directory=htmlcov
+        ignore_error: true
+
+  smoke:
+    desc: Run all smoke tests against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: smoke
+
+  predeploy:
+    desc: Run all predeploy tests against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: predeploy
+
+  postdeploy:
+    desc: Run all postdeploy tests against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: postdeploy
+
+  acceptance:smoke:
+    desc: Run acceptance smoke suite against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: acceptance and smoke
+
+  functional:smoke:
+    desc: Run functional smoke suite against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: functional and smoke
+
+  integration:smoke:
+    desc: Run integration smoke suite against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: integration and smoke
+
+  acceptance:predeploy:
+    desc: Run acceptance staging suite against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: acceptance and predeploy
+
+  functional:predeploy:
+    desc: Run functional staging suite against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: functional and predeploy
+
+  integration:predeploy:
+    desc: Run integration staging suite against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: integration and predeploy
+
+  acceptance:postdeploy:
+    desc: Run acceptance staging suite against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: acceptance and postdeploy
+
+  functional:postdeploy:
+    desc: Run functional staging suite against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: functional and postdeploy
+
+  integration:postdeploy:
+    desc: Run integration staging suite against a running system
+    cmds:
+      - task: pytest:marked
+        vars:
+          marks: integration and postdeploy
+
+  clean:
+    desc: Clean generated files
+    cmds:
+      - rm -rf {{.USER_WORKING_DIR}}/htmlcov
+      - rm -f {{.USER_WORKING_DIR}}/.coverage
+      - cmd: find . -type d -name __pycache__ -exec rm -rf {} \; 2> /dev/null
+        ignore_error: true
+
+  pytest:marked:
+    desc: Run pytest with specific marks
+    internal: true
+    cmds:
+      - cmd: |
+          echo
+          echo "************************************************************"
+          echo {{.marks}}
+          echo "************************************************************"
+        silent: true
+      - task: default
+        vars:
+          marks: -m "{{.marks}}"
